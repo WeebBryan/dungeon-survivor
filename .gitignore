@@ -1,0 +1,19 @@
+# Godot 4.x
+.godot/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Backups temporários
+*.tmp
+*.bak
+*.backup
+
+# Builds/exportações
+/builds/
+/exports/
+*.exe
+*.zip
+*.pck

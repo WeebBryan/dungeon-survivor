@@ -1,0 +1,548 @@
+[gd_scene format=3 uid="uid://ct6jxjngmolfm"]
+
+[ext_resource type="Script" uid="uid://glhi8t0up3u3" path="res://Scripts/main.gd" id="1_x6di6"]
+[ext_resource type="Texture2D" uid="uid://bpwug8lnjsx31" path="res://Assets/Sprites/Mapa.png" id="2_vgp11"]
+[ext_resource type="Script" uid="uid://bco0shjek6ogm" path="res://Scripts/player.gd" id="3_jjrtw"]
+[ext_resource type="PackedScene" uid="uid://duiuv5wvdlxe" path="res://Cenas/bullet.tscn" id="4_7yi6i"]
+[ext_resource type="PackedScene" uid="uid://bqk0wqwcenwv7" path="res://Cenas/damage_text.tscn" id="4_wnyw5"]
+[ext_resource type="PackedScene" uid="uid://34xx4a482v0c" path="res://Cenas/slash.tscn" id="5_7yi6i"]
+[ext_resource type="Script" uid="uid://csq8kpums4axt" path="res://Scripts/enemy_spawner.gd" id="6_me8gh"]
+[ext_resource type="PackedScene" uid="uid://dx88ni3o6owpa" path="res://Cenas/enemy.tscn" id="7_330ga"]
+[ext_resource type="SpriteFrames" uid="uid://da71hv118mqn0" path="res://Assets/Sprites/Player/mage_frames.tres" id="7_vgp11"]
+[ext_resource type="PackedScene" uid="uid://0etde6outfuw" path="res://Cenas/runner.tscn" id="8_3ea3k"]
+[ext_resource type="SpriteFrames" uid="uid://bes1ovqdde2q" path="res://Assets/Sprites/Player/duelist_frames.tres" id="8_do340"]
+[ext_resource type="PackedScene" uid="uid://baptw5bhy2gv2" path="res://Cenas/tank.tscn" id="9_btbr3"]
+[ext_resource type="Script" uid="uid://cbs16ufvxm8n7" path="res://Scripts/game_over_panel.gd" id="10_jjrtw"]
+[ext_resource type="PackedScene" uid="uid://cextesydspnet" path="res://Cenas/Boss.tscn" id="11_irhh0"]
+[ext_resource type="PackedScene" uid="uid://cqyrogaore66h" path="res://Cenas/ShooterEnemy.tscn" id="13_me8gh"]
+[ext_resource type="Script" uid="uid://bauolcnc2bj5u" path="res://Scripts/audio_manager.gd" id="14_330ga"]
+[ext_resource type="Script" uid="uid://cqq3hp2lx7ij5" path="res://Scripts/victory_panel.gd" id="15_erht2"]
+[ext_resource type="AudioStream" uid="uid://csv6juheb2oue" path="res://Sons/floraphonic-metal_whoosh_hit_8-201908.mp3" id="15_ir430"]
+[ext_resource type="AudioStream" uid="uid://dbhnaj3phwmh3" path="res://Sons/floraphonic-steel-blade-slice-1-188213.mp3" id="16_neu2f"]
+[ext_resource type="Script" uid="uid://kbpf8s5aek1u" path="res://Scripts/tutorial_panel.gd" id="16_vi8pf"]
+[ext_resource type="AudioStream" uid="uid://cg2g7chhdva4s" path="res://Sons/homemade_sfx-slap-hurt-pain-sound-effect-262618.mp3" id="17_wnyw5"]
+[ext_resource type="AudioStream" uid="uid://dly4w5s3iqmg2" path="res://Sons/universfield-level-up-05-326133.mp3" id="18_neu2f"]
+[ext_resource type="AudioStream" uid="uid://blio5jvsd7yrn" path="res://Music/02. Echoes_In_The_Hollow_Temple.mp3.mp3" id="23_do340"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(35, 60)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgp11"]
+bg_color = Color(0.019607844, 0.019607844, 0.019607844, 0.6666667)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5411765, 0.47843137, 0.33333334, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_do340"]
+bg_color = Color(0.06666667, 0.06666667, 0.06666667, 0.8666667)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.72156864, 0.6431373, 0.41568628, 1)
+corner_radius_top_left = 36
+corner_radius_top_right = 36
+corner_radius_bottom_right = 36
+corner_radius_bottom_left = 36
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhom4"]
+bg_color = Color(0.20392157, 0.050980393, 0.050980393, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.23137255, 0.12156863, 0.12156863, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcw4w"]
+bg_color = Color(0.7254902, 0, 0.07058824, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8etu"]
+bg_color = Color(0.09643137, 0.08925559, 0.35329553, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.036165163, 0.03040415, 0.1896518, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dl3br"]
+bg_color = Color(0.0627451, 0.0627451, 0.81960785, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_snoq5"]
+bg_color = Color(0.050980393, 0.5882353, 0.050980393, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.050980393, 0.101960786, 0.050980393, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5pwku"]
+bg_color = Color(0.10980392, 0.6392157, 0.22745098, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mf6v4"]
+bg_color = Color(0.03137255, 0.03137255, 0.03137255, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.43529412, 0.36078432, 0.20784314, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yktn8"]
+bg_color = Color(0.1882353, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.8, 0.28235295, 0.02745098, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfy0q"]
+bg_color = Color(0.78431374, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Main" type="Node2D" unique_id=103024924]
+script = ExtResource("1_x6di6")
+
+[node name="Ground" type="Sprite2D" parent="." unique_id=31878765]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_vgp11")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=65560333 node_paths=PackedStringArray("map_top_left", "map_bottom_right") groups=["player"]]
+scale = Vector2(1.2, 1.2)
+script = ExtResource("3_jjrtw")
+floating_text_scene = ExtResource("4_wnyw5")
+bullet_scene = ExtResource("4_7yi6i")
+slash_scene = ExtResource("5_7yi6i")
+mage_frames = ExtResource("7_vgp11")
+duelist_frames = ExtResource("8_do340")
+map_top_left = NodePath("../MapLimits/TopLeft")
+map_bottom_right = NodePath("../MapLimits/BottomRight")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1933023520]
+position = Vector2(-1, -1)
+scale = Vector2(0.15, 0.15)
+sprite_frames = ExtResource("7_vgp11")
+animation = &"walk"
+frame_progress = 0.7068878
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=217612474]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1927118215]
+
+[node name="EnemySpawner" type="Node" parent="." unique_id=1667758061]
+script = ExtResource("6_me8gh")
+enemy_scene = ExtResource("7_330ga")
+runner_scene = ExtResource("8_3ea3k")
+tank_scene = ExtResource("9_btbr3")
+shooter_scene = ExtResource("13_me8gh")
+boss_scene = ExtResource("11_irhh0")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1687740542]
+
+[node name="Hud" type="Control" parent="UI" unique_id=1040829037]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerStatsHUD" type="Control" parent="UI/Hud" unique_id=507457546]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 440.0
+offset_bottom = 155.0
+
+[node name="BackgroundPanel" type="Panel" parent="UI/Hud/PlayerStatsHUD" unique_id=590626105]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_right = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vgp11")
+
+[node name="ClassIconFrame" type="Panel" parent="UI/Hud/PlayerStatsHUD" unique_id=1417815579]
+layout_mode = 0
+offset_top = 10.0
+offset_right = 72.0
+offset_bottom = 82.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_do340")
+
+[node name="ClassIcon" type="TextureRect" parent="UI/Hud/PlayerStatsHUD" unique_id=1555433845]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="HealthBar" type="ProgressBar" parent="UI/Hud/PlayerStatsHUD" unique_id=1687640722 groups=["player_health_bar"]]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 10.0
+offset_right = 385.0
+offset_bottom = 28.0
+theme_override_styles/background = SubResource("StyleBoxFlat_mhom4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lcw4w")
+show_percentage = false
+
+[node name="XPBar" type="ProgressBar" parent="UI/Hud/PlayerStatsHUD" unique_id=2049510636 groups=["xp_bar"]]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 36.0
+offset_right = 335.0
+offset_bottom = 48.0
+theme_override_styles/background = SubResource("StyleBoxFlat_q8etu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dl3br")
+show_percentage = false
+
+[node name="StaminaBar" type="ProgressBar" parent="UI/Hud/PlayerStatsHUD" unique_id=579251821 groups=["stamina_bar"]]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 56.0
+offset_right = 315.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_snoq5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5pwku")
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="UI/Hud/PlayerStatsHUD" unique_id=1931563119 groups=["health_label"]]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 72.0
+offset_right = 515.0
+offset_bottom = 95.0
+text = "Vida: 100"
+
+[node name="LevelLabel" type="Label" parent="UI/Hud/PlayerStatsHUD" unique_id=1573406660 groups=["level_label"]]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 88.0
+offset_right = 515.0
+offset_bottom = 111.0
+text = "Nível: 1"
+
+[node name="WaveInfoPanel" type="PanelContainer" parent="UI/Hud" unique_id=631714733]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -272.0
+offset_top = 20.0
+offset_right = -32.0
+offset_bottom = 90.0
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Hud/WaveInfoPanel" unique_id=720152084]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Hud/WaveInfoPanel/MarginContainer" unique_id=909054617]
+layout_mode = 2
+alignment = 1
+
+[node name="WaveLabel" type="Label" parent="UI/Hud/WaveInfoPanel/MarginContainer/VBoxContainer" unique_id=1664189068 groups=["wave_label"]]
+layout_mode = 2
+text = "Wave: 1"
+horizontal_alignment = 1
+
+[node name="EnemyCountLabel" type="Label" parent="UI/Hud/WaveInfoPanel/MarginContainer/VBoxContainer" unique_id=2125160588 groups=["enemy_count_label"]]
+layout_mode = 2
+text = "Inimigos: 0"
+horizontal_alignment = 1
+
+[node name="BossInfoPanel" type="PanelContainer" parent="UI/Hud" unique_id=615823871 groups=["boss_info_panel"]]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -892.0
+offset_top = 580.0
+offset_right = -238.0
+offset_bottom = 650.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mf6v4")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Hud/BossInfoPanel" unique_id=841390931]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Hud/BossInfoPanel/MarginContainer" unique_id=594396628]
+layout_mode = 2
+
+[node name="BossNameLabel" type="Label" parent="UI/Hud/BossInfoPanel/MarginContainer/VBoxContainer" unique_id=716850974 groups=["boss_name_label"]]
+custom_minimum_size = Vector2(650, 28)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9529412, 0.90588236, 0.7607843, 1)
+theme_override_font_sizes/font_size = 22
+text = "BOSS"
+horizontal_alignment = 1
+
+[node name="BossHealthBar" type="ProgressBar" parent="UI/Hud/BossInfoPanel/MarginContainer/VBoxContainer" unique_id=1041617957 groups=["boss_health_bar"]]
+custom_minimum_size = Vector2(650, 22)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6745098, 0.3019608, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_yktn8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kfy0q")
+value = 100.0
+
+[node name="Banners" type="Control" parent="UI" unique_id=978895240]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WaveBanner" type="Label" parent="UI/Banners" unique_id=999549889 groups=["wave_banner"]]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 487.0
+offset_top = 276.5
+offset_right = 625.0
+offset_bottom = 331.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Wave 1"
+
+[node name="Panels" type="Control" parent="UI" unique_id=419224694]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TutorialPanel" type="Panel" parent="UI/Panels" unique_id=1523649383 groups=["tutorial_panel"]]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 263.5
+offset_top = 191.0
+offset_right = 848.5
+offset_bottom = 417.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("16_vi8pf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Panels/TutorialPanel" unique_id=747840882]
+layout_mode = 0
+offset_right = 582.0
+offset_bottom = 216.0
+
+[node name="TitleLabel" type="Label" parent="UI/Panels/TutorialPanel/VBoxContainer" unique_id=917951294]
+layout_mode = 2
+text = "COMO JOGAR"
+horizontal_alignment = 1
+
+[node name="ControlsLabel" type="Label" parent="UI/Panels/TutorialPanel/VBoxContainer" unique_id=1824318915]
+layout_mode = 2
+text = "WASD - Mover
+Mouse - Mirar
+Clique Esquerdo - Atacar
+Shift - Dash
+Espaço - Cambalhota / Teleporte"
+horizontal_alignment = 1
+
+[node name="ObjectiveLabel" type="Label" parent="UI/Panels/TutorialPanel/VBoxContainer" unique_id=1283140788]
+layout_mode = 2
+text = "Sobreviva às waves, derrote os bosses e escolha upgrades ao subir de nível."
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="UI/Panels/TutorialPanel/VBoxContainer" unique_id=921946125]
+layout_mode = 2
+text = "COMEÇAR"
+
+[node name="LevelUpPanel" type="Panel" parent="UI/Panels" unique_id=1024076772 groups=["level_panel"]]
+process_mode = 2
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 536.0
+offset_top = 284.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Panels/LevelUpPanel" unique_id=1648416302]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SpeedButton" type="Button" parent="UI/Panels/LevelUpPanel/VBoxContainer" unique_id=1248563017]
+process_mode = 2
+layout_mode = 2
+text = "+20 velocidade"
+
+[node name="DashButton" type="Button" parent="UI/Panels/LevelUpPanel/VBoxContainer" unique_id=1885849860]
+process_mode = 2
+layout_mode = 2
+text = "+100 Dash Speed"
+
+[node name="DamageButton" type="Button" parent="UI/Panels/LevelUpPanel/VBoxContainer" unique_id=1388812609]
+process_mode = 2
+layout_mode = 2
+text = "+1 Dano"
+
+[node name="GameOverPanel" type="Panel" parent="UI/Panels" unique_id=1518951645 groups=["game_over_panel"]]
+process_mode = 2
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_jjrtw")
+
+[node name="GameOver" type="Label" parent="UI/Panels/GameOverPanel" unique_id=1718262856]
+layout_mode = 0
+offset_left = 491.0
+offset_top = 193.0
+offset_right = 583.0
+offset_bottom = 216.0
+text = "GAME OVER"
+metadata/_edit_group_ = true
+
+[node name="RestartButton" type="Button" parent="UI/Panels/GameOverPanel" unique_id=487355069]
+process_mode = 2
+layout_mode = 0
+offset_left = 465.0
+offset_top = 360.0
+offset_right = 619.0
+offset_bottom = 391.0
+text = "Tentar Novamente"
+
+[node name="MenuButton" type="Button" parent="UI/Panels/GameOverPanel" unique_id=639339851]
+process_mode = 2
+layout_mode = 0
+offset_left = 480.0
+offset_top = 454.0
+offset_right = 604.0
+offset_bottom = 485.0
+text = "Menu Principal"
+
+[node name="VictoryPanel" type="Panel" parent="UI/Panels" unique_id=1974979175 groups=["victory_panel"]]
+process_mode = 2
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("15_erht2")
+
+[node name="TitleLabel" type="Label" parent="UI/Panels/VictoryPanel" unique_id=1766318630]
+layout_mode = 0
+offset_left = 521.0
+offset_top = 194.0
+offset_right = 634.0
+offset_bottom = 217.0
+text = "VOCÊ VENCEU!"
+
+[node name="StatsLabel" type="Label" parent="UI/Panels/VictoryPanel" unique_id=7098431]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 304.0
+offset_right = 622.0
+offset_bottom = 327.0
+text = "Estatísticas"
+
+[node name="MenuButton" type="Button" parent="UI/Panels/VictoryPanel" unique_id=816346693]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 439.0
+offset_right = 639.0
+offset_bottom = 470.0
+text = "Voltar ao Menu"
+
+[node name="AudioManager" type="Node" parent="." unique_id=422374622 groups=["audio_manager"]]
+script = ExtResource("14_330ga")
+
+[node name="SlashPlayer" type="AudioStreamPlayer" parent="AudioManager" unique_id=1908218999]
+stream = ExtResource("16_neu2f")
+
+[node name="HitPlayer" type="AudioStreamPlayer" parent="AudioManager" unique_id=1887555339]
+stream = ExtResource("15_ir430")
+
+[node name="DeathPlayer" type="AudioStreamPlayer" parent="AudioManager" unique_id=1111939199]
+stream = ExtResource("17_wnyw5")
+
+[node name="LevelUpPlayer" type="AudioStreamPlayer" parent="AudioManager" unique_id=1731244460]
+stream = ExtResource("18_neu2f")
+
+[node name="BossChargePlayer" type="AudioStreamPlayer" parent="AudioManager" unique_id=1676464044]
+
+[node name="XPPlayer" type="AudioStreamPlayer" parent="AudioManager" unique_id=38042127]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1040456709]
+stream = ExtResource("23_do340")
+volume_db = -14.0
+autoplay = true
+
+[node name="MapLimits" type="Node2D" parent="." unique_id=621657761]
+
+[node name="TopLeft" type="Marker2D" parent="MapLimits" unique_id=681937267]
+position = Vector2(-941, -941)
+
+[node name="BottomRight" type="Marker2D" parent="MapLimits" unique_id=834685618]
+position = Vector2(941, 941)
+
+[connection signal="pressed" from="UI/Panels/TutorialPanel/VBoxContainer/StartButton" to="UI/Panels/TutorialPanel" method="_on_start_button_pressed"]
+[connection signal="pressed" from="UI/Panels/LevelUpPanel/VBoxContainer/SpeedButton" to="." method="_on_speed_button_pressed"]
+[connection signal="pressed" from="UI/Panels/LevelUpPanel/VBoxContainer/DashButton" to="." method="_on_dash_button_pressed"]
+[connection signal="pressed" from="UI/Panels/LevelUpPanel/VBoxContainer/DamageButton" to="." method="_on_damage_button_pressed"]
+[connection signal="pressed" from="UI/Panels/GameOverPanel/RestartButton" to="UI/Panels/GameOverPanel" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="UI/Panels/GameOverPanel/MenuButton" to="UI/Panels/GameOverPanel" method="_on_menu_button_pressed"]
+[connection signal="pressed" from="UI/Panels/VictoryPanel/MenuButton" to="UI/Panels/GameOverPanel" method="_on_menu_button_pressed"]

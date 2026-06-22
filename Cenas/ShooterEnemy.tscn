@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://cqyrogaore66h"]
+
+[ext_resource type="Script" uid="uid://eb0mjl7i8org" path="res://Scripts/shooter_enemy.gd" id="1_5t55g"]
+[ext_resource type="PackedScene" uid="uid://cwe1n6trl46by" path="res://Cenas/xp_orb.tscn" id="2_86oc2"]
+[ext_resource type="PackedScene" uid="uid://c86pyxuwmksj2" path="res://Cenas/enemy_bullet.tscn" id="2_pleko"]
+[ext_resource type="PackedScene" uid="uid://bqk0wqwcenwv7" path="res://Cenas/damage_text.tscn" id="3_86oc2"]
+[ext_resource type="SpriteFrames" uid="uid://b8doe57o1nmvx" path="res://Assets/Sprites/Enemies/shooterenemy_frames.tres" id="5_q2hel"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
+size = Vector2(61, 69)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gyqm"]
+size = Vector2(68, 78)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q2hel"]
+bg_color = Color(0.1882353, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pu4nf"]
+bg_color = Color(0.78431374, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="ShooterEnemy" type="CharacterBody2D" unique_id=1451329427 groups=["enemy"]]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_5t55g")
+bullet_scene = ExtResource("2_pleko")
+xp_scene = ExtResource("2_86oc2")
+damage_text_scene = ExtResource("3_86oc2")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=221843616]
+position = Vector2(0, -23)
+sprite_frames = ExtResource("5_q2hel")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=37360431]
+position = Vector2(1.5, 2.5)
+shape = SubResource("RectangleShape2D_iifgy")
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=1051892987]
+wait_time = 1.5
+autostart = true
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=2050141144]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1368853154]
+position = Vector2(2, 1)
+shape = SubResource("RectangleShape2D_4gyqm")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1120773197]
+offset_left = -44.0
+offset_top = -70.0
+offset_right = 43.0
+offset_bottom = -43.0
+theme_override_styles/background = SubResource("StyleBoxFlat_q2hel")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pu4nf")
+value = 100.0
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

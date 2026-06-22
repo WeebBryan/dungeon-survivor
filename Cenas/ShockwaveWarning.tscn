@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d2msqoi1l4chp"]
+
+[ext_resource type="Script" uid="uid://da5pskkbqypjm" path="res://Scripts/shockwave_warning.gd" id="1_mxcot"]
+
+[node name="ShockwaveWarning" type="Node2D" unique_id=1876825359]
+scale = Vector2(8, 8)
+script = ExtResource("1_mxcot")

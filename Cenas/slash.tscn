@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://34xx4a482v0c"]
+
+[ext_resource type="Script" uid="uid://b1m1rhuddvwue" path="res://Scripts/slash.gd" id="1_44eof"]
+[ext_resource type="Texture2D" uid="uid://dlicqjmvtlcqs" path="res://Assets/Teste/Slash tes.png" id="2_3itn2"]
+
+[node name="Slash" type="Node2D" unique_id=1125532958]
+script = ExtResource("1_44eof")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1020766806]
+texture = ExtResource("2_3itn2")

@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cextesydspnet"]
+
+[ext_resource type="Script" uid="uid://6iq5xt02084q" path="res://Scripts/boss.gd" id="1_vfexq"]
+[ext_resource type="PackedScene" uid="uid://bqk0wqwcenwv7" path="res://Cenas/damage_text.tscn" id="2_vypnt"]
+[ext_resource type="PackedScene" uid="uid://d2msqoi1l4chp" path="res://Cenas/ShockwaveWarning.tscn" id="3_tyx5s"]
+[ext_resource type="PackedScene" uid="uid://kidy756gqrwn" path="res://Cenas/summon_warning.tscn" id="4_g07ws"]
+[ext_resource type="PackedScene" uid="uid://dx88ni3o6owpa" path="res://Cenas/enemy.tscn" id="4_vupgi"]
+[ext_resource type="PackedScene" uid="uid://0etde6outfuw" path="res://Cenas/runner.tscn" id="5_g07ws"]
+[ext_resource type="SpriteFrames" uid="uid://cy3io3ccqcfit" path="res://Assets/Sprites/Enemies/boss_frames.tres" id="7_g07ws"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vypnt"]
+size = Vector2(97, 123)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tyx5s"]
+size = Vector2(139, 144)
+
+[node name="Boss" type="CharacterBody2D" unique_id=343677206 groups=["enemy"]]
+script = ExtResource("1_vfexq")
+damage_text_scene = ExtResource("2_vypnt")
+shockwave_warning_scene = ExtResource("3_tyx5s")
+summon_warning_scene = ExtResource("4_g07ws")
+enemy_scene = ExtResource("4_vupgi")
+runner_scene = ExtResource("5_g07ws")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=289121080]
+scale = Vector2(1.3, 1.3)
+sprite_frames = ExtResource("7_g07ws")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=329356606]
+position = Vector2(2.5, -1.5)
+shape = SubResource("RectangleShape2D_vypnt")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=2041224196]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1970009211]
+position = Vector2(1.5, -2)
+shape = SubResource("RectangleShape2D_tyx5s")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

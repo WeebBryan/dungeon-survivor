@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://0etde6outfuw"]
+
+[ext_resource type="Script" uid="uid://cay8jwdiboiv3" path="res://Scripts/runner.gd" id="1_f7b3c"]
+[ext_resource type="PackedScene" uid="uid://cwe1n6trl46by" path="res://Cenas/xp_orb.tscn" id="2_hfbw2"]
+[ext_resource type="PackedScene" uid="uid://bqk0wqwcenwv7" path="res://Cenas/damage_text.tscn" id="2_xycdt"]
+[ext_resource type="SpriteFrames" uid="uid://dv14ewbdlm7wu" path="res://Assets/Sprites/Enemies/runner_frames.tres" id="4_xycdt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
+size = Vector2(52, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gyqm"]
+size = Vector2(68.33333, 62.499996)
+
+[node name="Runner" type="CharacterBody2D" unique_id=1451329427 groups=["enemy"]]
+scale = Vector2(1.2, 1.2)
+script = ExtResource("1_f7b3c")
+xp_scene = ExtResource("2_hfbw2")
+damage_text_scene = ExtResource("2_xycdt")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=2013811596]
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_xycdt")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=37360431]
+position = Vector2(-3, 11)
+shape = SubResource("RectangleShape2D_iifgy")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=2050141144]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1368853154]
+position = Vector2(-3.333334, 12.083334)
+shape = SubResource("RectangleShape2D_4gyqm")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1752520937]
+offset_left = -45.0
+offset_top = -46.0
+offset_right = 42.0
+offset_bottom = -19.0
+theme_override_colors/font_color = Color(0.78431374, 0, 0, 1)
+value = 100.0
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

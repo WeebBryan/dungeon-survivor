@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c5iq8ck1h4l4p"
+path="res://.godot/imported/01. Woodlands_Green_Light_Festival.mp3.mp3-806c1c991373e68d0a2afdd91d40a65d.mp3str"
+
+[deps]
+
+source_file="res://Music/01. Woodlands_Green_Light_Festival.mp3.mp3"
+dest_files=["res://.godot/imported/01. Woodlands_Green_Light_Festival.mp3.mp3-806c1c991373e68d0a2afdd91d40a65d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

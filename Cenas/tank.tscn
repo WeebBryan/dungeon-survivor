@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://baptw5bhy2gv2"]
+
+[ext_resource type="Script" uid="uid://dtqs16t1auj4" path="res://Scripts/tank.gd" id="1_qr03w"]
+[ext_resource type="PackedScene" uid="uid://bqk0wqwcenwv7" path="res://Cenas/damage_text.tscn" id="2_1uew3"]
+[ext_resource type="PackedScene" uid="uid://cwe1n6trl46by" path="res://Cenas/xp_orb.tscn" id="2_wmnvx"]
+[ext_resource type="SpriteFrames" uid="uid://b3bq5md7adoc6" path="res://Assets/Sprites/Enemies/tank_frames.tres" id="4_wmnvx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
+size = Vector2(66, 84)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gyqm"]
+size = Vector2(84.00001, 100.00001)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wmnvx"]
+bg_color = Color(0.1882353, 0, 0, 1)
+border_color = Color(0.78431374, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1uew3"]
+bg_color = Color(0.78431374, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Tank" type="CharacterBody2D" unique_id=1451329427 groups=["enemy"]]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_qr03w")
+xp_scene = ExtResource("2_wmnvx")
+damage_text_scene = ExtResource("2_1uew3")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1460225784]
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_wmnvx")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=37360431]
+position = Vector2(4, 10)
+shape = SubResource("RectangleShape2D_iifgy")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=2050141144]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1368853154]
+position = Vector2(3.333334, 11.333334)
+shape = SubResource("RectangleShape2D_4gyqm")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=376427325]
+offset_left = -38.0
+offset_top = -65.0
+offset_right = 49.0
+offset_bottom = -38.0
+theme_override_styles/background = SubResource("StyleBoxFlat_wmnvx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1uew3")
+value = 100.0
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

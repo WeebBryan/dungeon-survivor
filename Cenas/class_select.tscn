@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://qstedgh4ows1"]
+
+[ext_resource type="Script" uid="uid://xc44mk0kyafb" path="res://Scripts/class_select.gd" id="1_omwvp"]
+[ext_resource type="AudioStream" uid="uid://c5iq8ck1h4l4p" path="res://Music/01. Woodlands_Green_Light_Festival.mp3.mp3" id="2_0utl5"]
+[ext_resource type="Texture2D" uid="uid://e1kmubgr5xdm" path="res://Classes.png" id="2_jx6ci"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jx6ci"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2s16s"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="ClassSelect" type="Control" unique_id=663966907]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_omwvp")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=828830229]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 647.0
+texture = ExtResource("2_jx6ci")
+expand_mode = 1
+
+[node name="DuelistButton" type="Button" parent="." unique_id=1226496290]
+layout_mode = 0
+offset_left = 814.0
+offset_top = 477.0
+offset_right = 990.0
+offset_bottom = 508.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_jx6ci")
+
+[node name="MageButton" type="Button" parent="." unique_id=2083155559]
+layout_mode = 0
+offset_left = 193.0
+offset_top = 475.0
+offset_right = 340.0
+offset_bottom = 512.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_2s16s")
+
+[node name="MenuMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=2112822647]
+stream = ExtResource("2_0utl5")
+volume_db = -14.0
+
+[connection signal="pressed" from="DuelistButton" to="." method="_on_duelist_button_pressed"]
+[connection signal="pressed" from="MageButton" to="." method="_on_mage_button_pressed"]

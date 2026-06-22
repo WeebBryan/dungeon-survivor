@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cwe1n6trl46by"]
+
+[ext_resource type="Script" uid="uid://csxmkn3ws0usk" path="res://Scripts/xp_orb.gd" id="1_vmu32"]
+[ext_resource type="Texture2D" uid="uid://dy7tww3gah3jn" path="res://Assets/Teste/Teste exp.png" id="2_atld1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fb8i0"]
+
+[node name="XPOrb" type="Area2D" unique_id=1770248262]
+script = ExtResource("1_vmu32")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1685162426]
+texture = ExtResource("2_atld1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1243212742]
+shape = SubResource("RectangleShape2D_fb8i0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
