@@ -33,6 +33,12 @@ O jogo possui duas classes jogáveis:
 * Pixel art 2D
 * Git e GitHub para versionamento
 
+## Download
+
+A versão executável para Windows está disponível na aba **Releases** deste repositório.
+
+Baixe o arquivo `.zip`, extraia a pasta e execute `DungeonSurvivor.exe`.
+
 ## Como executar o projeto
 
 1. Baixe ou clone este repositório:
