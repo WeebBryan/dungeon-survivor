@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://h6br40mgpgcv" path="res://Menu.png" id="2_bd8gm"]
 [ext_resource type="AudioStream" uid="uid://c5iq8ck1h4l4p" path="res://Music/01. Woodlands_Green_Light_Festival.mp3.mp3" id="2_hn0nd"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ch3q6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bd8gm"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
@@ -19,15 +22,10 @@ script = ExtResource("1_pfblw")
 
 [node name="Background" type="TextureRect" parent="." unique_id=2082334952]
 layout_mode = 0
-offset_right = 1153.0
-offset_bottom = 647.0
+offset_right = 1280.0
+offset_bottom = 721.0
 texture = ExtResource("2_bd8gm")
 expand_mode = 1
-
-[node name="DarkOverlay" type="ColorRect" parent="." unique_id=1599482481]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="TitleLabel" type="Label" parent="." unique_id=1440942514]
 visible = false
@@ -44,15 +42,14 @@ volume_db = -14.0
 
 [node name="MenuPanel" type="Panel" parent="." unique_id=633965113]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ch3q6")
 
 [node name="PlayButton" type="Button" parent="MenuPanel" unique_id=1947330007]
 layout_mode = 0
-offset_left = 491.0
-offset_top = 374.0
-offset_right = 669.0
-offset_bottom = 411.0
+offset_left = 529.0
+offset_top = 417.0
+offset_right = 752.0
+offset_bottom = 460.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_bd8gm")
 
 [node name="ControlsButton" type="Button" parent="MenuPanel" unique_id=1308096741]
@@ -62,16 +59,11 @@ offset_bottom = 8.0
 
 [node name="QuitButton" type="Button" parent="MenuPanel" unique_id=142051917]
 layout_mode = 0
-offset_left = 511.0
-offset_top = 447.0
-offset_right = 654.0
-offset_bottom = 487.0
+offset_left = 523.0
+offset_top = 501.0
+offset_right = 756.0
+offset_bottom = 541.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_ybyo8")
-
-[node name="SubtitleLabel" type="Label" parent="." unique_id=1425900627]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
 
 [connection signal="pressed" from="MenuPanel/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MenuPanel/QuitButton" to="." method="_on_quit_button_pressed"]

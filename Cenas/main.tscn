@@ -25,7 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://blio5jvsd7yrn" path="res://Music/02. Echoes_In_The_Hollow_Temple.mp3.mp3" id="23_do340"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
-size = Vector2(35, 60)
+size = Vector2(26.666666, 34.166664)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgp11"]
 bg_color = Color(0.019607844, 0.019607844, 0.019607844, 0.6666667)
@@ -165,7 +165,7 @@ animation = &"walk"
 frame_progress = 0.7068878
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=217612474]
-position = Vector2(-0.5, -1)
+position = Vector2(-0.833333, -1.2499995)
 shape = SubResource("RectangleShape2D_1bvp3")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1927118215]
